@@ -1,0 +1,54 @@
+<script>
+$(document).ready(function(){
+  $('#save_changes').on("click", function(){
+    $("form#edit_post").submit();
+  });
+});
+</script>
+
+<% if @title_errors || @body_errors %>
+<% @answer[1].full_messages.each do |e| %>
+<h3><a class = "btn btn-large btn-danger disabled"><%= e %></a></h3>
+<% end %>
+<% end %>
+
+<div id = "post"><div><h3 id = "post_title"><%= @post.title %></div>
+<div id = "post_text"><%= RbbCode.new.convert(@post.body) %></div></div>
+<div id = "post_text">
+	<% @post.tag_list.each do |tag| %>
+	<a href = "/tag/<%= tag %>"><%= tag %></a> 
+	<% end %>
+</div>
+<hr>
+<div class = "menu"><span><form action = "/post/delete" method = "post"><input type = "hidden" name = "hidden_title" value = "<%= @post.title %>"><input class = "btn" type = "submit" value = "Delete"> - <a data-toggle = "modal" class = "btn btn-primary" role = "button" href = "#editbox">Edit</a></form></span></div>
+
+<div id="editbox" class="modal hide fade" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+  <div class="modal-header">
+    <button type="button" class="close" data-dismiss="modal" aria-hidden="true">×</button>
+    <h3 id="myModalLabel">Edit</h3>
+  </div>
+
+  <div class="modal-body">
+    <form id = "edit_post" action = "/post/<%= @post.id %>/edit" method = "post" class = "form-horizontal">
+
+      <div class="control-group">
+        <label class="control-label" for="title_field">Title</label>
+        <div class="controls">
+          <input name = "title" type="text" id="title_field" placeholder="Title" value = "<%= @post.title %>">
+        </div>
+      </div>
+    
+      <div class="control-group">
+        <label class="control-label" for="body_textarea">Text</label>
+        <div class="controls">
+          <textarea id="body_textarea" name ="body"><%= @post.body %></textarea>
+        </div>
+      </div>
+    </form>
+  </div>
+
+  <div class="modal-footer">
+    <button class="btn" data-dismiss="modal" aria-hidden="true">Close</button>
+    <button class="btn btn-primary" id = "save_changes">Save changes</button>
+  </div>
+</div>

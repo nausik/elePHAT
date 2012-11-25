@@ -1,0 +1,46 @@
+<% if @title_errors || @body_errors %>
+<% @answer[1].full_messages.each do |e| %>
+<h3><a class = "btn btn-large btn-danger disabled"><%= e %></a></h3>
+<% end %>
+<% end %>
+
+<style>
+.span4{
+  padding-top: 4%;
+}
+textarea{
+	resize: none;
+}
+</style>
+
+<div class="row">
+  <div class="span7"><form action="/create" method="post">
+<div id = "flash"><div class = "flash fatal"></div></div>
+      <div class='control-group <% if @title_errors %>error<% end %>'>
+        <label class="control-label" for="title"><h3>Title</h3></label>
+        <input type="text" class = "input-xxlarge" id="title" placeholder="Title" name = "title" value = "<%= session[:post_title] %>">
+      </div>
+    
+      <div class="control-group <% if @body_errors %>error<% end %>">
+        <label class="control-label" for="body_textarea"><h3>Text</h3></label>
+        <textarea id="body" class = "span7" rows = "10" name ="body"><%= session[:post_body] %></textarea>
+      </div>
+      
+      <div class='control-group'>
+        <label class="control-label" for="tags"><h3>Tags</h3></label>
+        <input type="text" class = "input-xxlarge" id="tags" placeholder="Tags" name = "tags" value = "<%= session[:post_tags] %>">
+      </div>
+
+  <div><input class = "btn btn-large btn-danger" id = "submit" type="submit"></div>
+</form></div>
+<div class="span4"><p class = "lead success"><strong>elePHAT</strong> allows you to use BBCode, so you can use
+<ul><li>[b]</li>
+<li>[i]</li>
+<li>[u]</li>
+<li>[s]</li>
+<li>[url]</li>
+<li>[img]</li>
+<li>[quote]</li>
+<li>[list]</li>
+</ul></p></div>
+</div>
