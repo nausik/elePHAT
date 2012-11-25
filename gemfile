@@ -1,0 +1,7 @@
+require 'sinatra'
+require 'data_mapper'
+require 'dm-migrations'
+require 'rbbcode'
+require 'dm-tags'
+require 'digest/md5'
+require 'warden'
