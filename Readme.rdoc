@@ -1,0 +1,18 @@
+= elePHAT
+
+elePHAT is a very simple which was written purely for testing purposes.
+It's a simple notes storage application with tags (dm-tags), authentification (warden), bbcode (rbbcode). It was written on Ruby Sinatra and Bootstrap frameworks.
+== Install
+Installion is very simple. You just need to run
+
+  bundle install
+
+and either run
+
+ ruby run.rub
+
+and elePHAT will run on your sinatra port (by default it's 4567), or
+
+  rspec -p %portname%
+
+and it will run on portname
