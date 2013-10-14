@@ -7,7 +7,6 @@ end
 
 class Logic < Sinatra::Base
 #Authentication (warden)
-  enable :sessions
   use Rack::Session::Cookie, :secret => "secre1_messaga_lol"
 
   use Warden::Manager do |manager|
@@ -36,7 +35,7 @@ class Logic < Sinatra::Base
   end
 
   before  do
-    redirect '/login' unless env['warden'].user || ['/login', '/signup'].include?(request.env['REQUEST_URI'])
+    redirect '/login' unless env['warden'].user || ['/login', '/signup'].include?(request.path_info)
   end
 
   get '/logout' do
