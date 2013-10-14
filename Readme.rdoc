@@ -16,3 +16,9 @@ and elePHAT will run on your sinatra port (by default it's 4567), or
   rspec -p %portname%
 
 and it will run on portname
+
+Also, by default it's set to the development mode. If you want your app to be available from external web, add 
+
+  set :environment, :production
+
+to the Logic class in elePHAT.rb
